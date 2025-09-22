@@ -81,8 +81,6 @@ const PremiumAboutSection = () => {
             About <span className="text-amber-500 font-thin">Us</span>
           </Motion.h1>
 
-         
-
           <Motion.p
             variants={fadeUp}
             className="text-xl md:text-2xl font-light text-white/90 leading-relaxed"

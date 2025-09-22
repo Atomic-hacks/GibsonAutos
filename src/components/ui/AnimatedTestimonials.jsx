@@ -4,27 +4,24 @@ import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
-
-
-export const AnimatedTestimonials = ({
-  testimonials,
-  autoplay = false,
-}) => {
+export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
   // Use useState with a lazy initializer to ensure this only runs on client
   const [active, setActive] = useState(0);
-  
+
   // Store rotation values in a ref to keep them consistent across renders
   const [rotationValues, setRotationValues] = useState();
-  
+
   // Client-side only flag
   const [isClient, setIsClient] = useState(false);
 
   // Initialize rotation values once on client-side only
   useEffect(() => {
     setIsClient(true);
-    
+
     // Generate and store stable rotation values for each testimonial
-    const rotations = testimonials.map(() => Math.floor(Math.random() * 15) - 7);
+    const rotations = testimonials.map(
+      () => Math.floor(Math.random() * 15) - 7
+    );
     setRotationValues(rotations);
   }, [testimonials.length]);
 
@@ -43,7 +40,7 @@ export const AnimatedTestimonials = ({
   // Setup autoplay only on client side
   useEffect(() => {
     if (!isClient || !autoplay) return;
-    
+
     const interval = setInterval(handleNext, 5000);
     return () => clearInterval(interval);
   }, [autoplay, isClient]);
@@ -97,16 +94,16 @@ export const AnimatedTestimonials = ({
           What our <span className="text-amber-600">Clients</span> Say
         </h1>
       </div>
-      
+
       <div className="relative grid grid-cols-1 gap-10 md:gap-16 lg:gap-20 md:grid-cols-2 items-center">
         {/* Image Section */}
         <div className="relative h-96 md:h-[28rem] w-full overflow-visible">
           <div className="absolute inset-0 bg-gradient-to-br from-neutral-100/30 to-neutral-50/30 dark:from-neutral-900/30 dark:to-neutral-800/30 rounded-3xl -z-10 blur-xl opacity-80"></div>
-          
+
           {/* Orange accent sparkle */}
           <div className="absolute -top-4 -right-4 h-16 w-16 bg-amber-500 rounded-full opacity-20 blur-xl"></div>
           <div className="absolute -bottom-4 -left-4 h-12 w-12 bg-amber-500 rounded-full opacity-30 blur-lg"></div>
-          
+
           <AnimatePresence mode="wait">
             {testimonials.map((testimonial, index) => (
               <Motion.div
@@ -154,7 +151,7 @@ export const AnimatedTestimonials = ({
                     className="h-full w-full object-cover object-center transition-transform duration-700"
                   />
                   {isActive(index) && (
-                    <Motion.div 
+                    <Motion.div
                       className="absolute bottom-6 left-6 right-6 z-10 md:hidden"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -172,7 +169,7 @@ export const AnimatedTestimonials = ({
               </Motion.div>
             ))}
           </AnimatePresence>
-          
+
           {/* Navigation indicators */}
           <div className="absolute -bottom-12 left-0 right-0 flex justify-center gap-2">
             {testimonials.map((_, index) => (
@@ -182,7 +179,7 @@ export const AnimatedTestimonials = ({
                 className="p-1"
                 aria-label={`Go to testimonial ${index + 1}`}
               >
-                <div 
+                <div
                   className={`h-2 w-8 rounded-full transition-all duration-300 ${
                     isActive(index)
                       ? "bg-amber-500"
@@ -227,9 +224,11 @@ export const AnimatedTestimonials = ({
                 {/* Accent line */}
                 <div className="h-1 w-12 bg-amber-500 rounded-full mt-3"></div>
               </div>
-              
+
               <div className="relative">
-                <div className="absolute -left-4 -top-2 text-5xl font-serif text-amber-500 opacity-30">&ldquo;</div>
+                <div className="absolute -left-4 -top-2 text-5xl font-serif text-amber-500 opacity-30">
+                  &ldquo;
+                </div>
                 <Motion.p className="relative mt-6 text-lg md:text-xl text-neutral-600 dark:text-neutral-300 leading-relaxed">
                   {testimonials[active].quote.split(" ").map((word, index) => (
                     <Motion.span

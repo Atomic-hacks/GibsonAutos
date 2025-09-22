@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { motion as Motion, useAnimation } from "framer-Motion";
+import { motion as Motion, useAnimation } from "framer-motion";
 import { FaChevronRight } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa6";
 
