@@ -1,0 +1,198 @@
+// Mock database - Replace with your actual data source
+export const carDatabase = {
+  "hyundai-ioniq-6se": {
+    id: "hyundai-ioniq-6se",
+    brand: "Hyundai",
+    model: "IONIQ 6SE",
+    year: "2024",
+    price: 52500,
+    priceDisplay: "$52,500",
+    mileage: "0 miles",
+    color: "Gravity Gold Matte",
+    transmission: "Automatic",
+    fuelType: "Electric",
+    drivetrain: "AWD",
+    category: "Sedan",
+    status: "New",
+    images: ["/car6.jpg", "/int4.jpg", "eng2.jpg"],
+    specs: {
+      Engine: "Electric Motor",
+      Power: "305 HP",
+      Range: "305 miles",
+      Charging: "DC Fast Charging",
+      Seating: "5 passengers",
+      Cargo: "11.2 cu ft",
+    },
+    features: [
+      "Premium Leather Interior",
+      "Panoramic Sunroof",
+      "Advanced Driver Assistance",
+      "Wireless Charging",
+      "Premium Sound System",
+      "Climate Control",
+      "LED Lighting Package",
+      "Smart Key System",
+    ],
+    description:
+      "Experience the future of luxury electric driving with the IONIQ 6SE. This premium sedan combines cutting-edge technology with exceptional comfort and performance.",
+  },
+  "volkswagen-touareg-tdi": {
+    id: "volkswagen-touareg-tdi",
+    brand: "Volkswagen",
+    model: "Touareg TDI Lux",
+    year: "2023",
+    price: 68900,
+    priceDisplay: "$68,900",
+    mileage: "12,500 miles",
+    color: "Deep Black Pearl",
+    transmission: "8-Speed Automatic",
+    fuelType: "Diesel",
+    drivetrain: "4MOTION AWD",
+    category: "SUV",
+    status: "Used",
+    images: ["/car5.jpg", "/int6.jpg"],
+    specs: {
+      Engine: "3.0L V6 TDI",
+      Power: "286 HP",
+      Torque: "443 lb-ft",
+      MPG: "23 city / 29 highway",
+      Seating: "5 passengers",
+      Towing: "7,700 lbs",
+    },
+    features: [
+      "Air Suspension",
+      "Premium Leather",
+      "Navigation System",
+      "Heated & Ventilated Seats",
+      "Panoramic Sunroof",
+      "Premium Audio",
+      "Advanced Safety Suite",
+      "Ambient Lighting",
+    ],
+    description:
+      "The Touareg TDI Lux delivers exceptional luxury and capability with its refined diesel powertrain and premium appointments.",
+  },
+  "cadillac-elr-base": {
+    id: "cadillac-elr-base",
+    brand: "Cadillac",
+    model: "ELR Base",
+    year: "2024",
+    price: 85000,
+    priceDisplay: "$85,000",
+    mileage: "0 miles",
+    color: "Crystal White Tricoat",
+    transmission: "CVT",
+    fuelType: "Hybrid",
+    drivetrain: "FWD",
+    category: "Coupe",
+    status: "New",
+    images: ["/car4.jpg", "/int4.jpg"],
+    specs: {
+      Engine: "1.4L Turbo + Electric",
+      Power: "181 HP",
+      "Electric Range": "37 miles",
+      "Total Range": "340 miles",
+      Seating: "4 passengers",
+      Cargo: "10.1 cu ft",
+    },
+    features: [
+      "Luxury Interior",
+      "Bose Audio System",
+      "CUE Infotainment",
+      "Heated Seats",
+      "Premium Materials",
+      "LED Headlights",
+      "Remote Start",
+      "Wireless Charging",
+    ],
+    description:
+      "The ELR Base represents Cadillac's vision of luxury hybrid driving with stunning design and advanced technology.",
+  },
+  "bmw-x5-m50i": {
+    id: "bmw-x5-m50i",
+    brand: "BMW",
+    model: "X5 M50i",
+    year: "2023",
+    price: 95000,
+    priceDisplay: "$95,000",
+    mileage: "8,200 miles",
+    color: "Alpine White",
+    transmission: "8-Speed Automatic",
+    fuelType: "Gasoline",
+    drivetrain: "xDrive AWD",
+    category: "SUV",
+    status: "Used",
+    images: ["/car1.jpg", "/int2.jpg"],
+    specs: {
+      Engine: "4.4L Twin-Turbo V8",
+      Power: "523 HP",
+      Torque: "553 lb-ft",
+      "0-60 mph": "4.1 seconds",
+      Seating: "7 passengers",
+      Towing: "7,200 lbs",
+    },
+    features: [
+      "M Performance Package",
+      "Premium Leather",
+      "Harman Kardon Audio",
+      "Panoramic Roof",
+      "Gesture Control",
+      "Wireless Apple CarPlay",
+      "Adaptive Suspension",
+      "Night Vision",
+    ],
+    description:
+      "The X5 M50i combines BMW's legendary performance with luxury SUV practicality in an unforgettable package.",
+  },
+  "mercedes-gle-450": {
+    id: "mercedes-gle-450",
+    brand: "Mercedes-Benz",
+    model: "GLE 450",
+    year: "2024",
+    price: 78000,
+    priceDisplay: "$78,000",
+    mileage: "0 miles",
+    color: "Obsidian Black Metallic",
+    transmission: "9-Speed Automatic",
+    fuelType: "Gasoline",
+    drivetrain: "4MATIC AWD",
+    category: "SUV",
+    status: "New",
+    images: ["/car1.jpg", "/int3.jpg"],
+    specs: {
+      Engine: "3.0L Turbo I6 + EQBoost",
+      Power: "362 HP",
+      Torque: "369 lb-ft",
+      MPG: "21 city / 28 highway",
+      Seating: "5 passengers",
+      Cargo: "33.5 cu ft",
+    },
+    features: [
+      "MBUX Infotainment",
+      "Premium Package",
+      "Air Body Control",
+      "Burmester Audio",
+      "360-Degree Camera",
+      "Heated & Cooled Seats",
+      "Ambient Lighting",
+      "Trailer Hitch",
+    ],
+    description:
+      "The GLE 450 sets the standard for luxury SUVs with its refined performance and cutting-edge technology.",
+  },
+};
+
+export const getCarById = (id) => carDatabase[id];
+export const getAllCars = () => Object.values(carDatabase);
+export const getCarsByCategory = (category) => 
+  Object.values(carDatabase).filter(car => 
+    car.category.toLowerCase() === category.toLowerCase()
+  );
+export const getCarsByFuelType = (fuelType) => 
+  Object.values(carDatabase).filter(car => 
+    car.fuelType.toLowerCase() === fuelType.toLowerCase()
+  );
+export const getCarsByStatus = (status) => 
+  Object.values(carDatabase).filter(car => 
+    car.status.toLowerCase() === status.toLowerCase()
+  );
