@@ -179,9 +179,9 @@ const Hero = ({ videoSrc = "/car-int.mp4" }) => {
               }}
             />
 
-            <span className="relative z-10 text-black font-medium">
+            <a href='/vehicles' className="relative z-10 text-black font-medium">
               view our cars
-            </span>
+            </a >
 
             <Motion.span
               className="relative z-10"
