@@ -73,8 +73,8 @@ const ServicesSection = () => {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
+        staggerChildren: 0.1,
+        delayChildren: 0.05,
       },
     },
   };
@@ -82,8 +82,8 @@ const ServicesSection = () => {
   const imageVariants = {
     hidden: {
       opacity: 0,
-      scale: 0.92,
-      y: 60,
+      scale: 0.95,
+      y: 40,
     },
     visible: {
       opacity: 1,
@@ -96,10 +96,10 @@ const ServicesSection = () => {
     },
     exit: {
       opacity: 0,
-      scale: 1.08,
-      y: -30,
+      scale: 1.05,
+      y: -20,
       transition: {
-        duration: 0.5,
+        duration: 0.4,
         ease: "easeOut",
       },
     },
@@ -108,13 +108,13 @@ const ServicesSection = () => {
   const tabVariants = {
     hidden: {
       opacity: 0,
-      y: 20,
+      y: 10,
     },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.4,
         ease: "easeOut",
       },
     },
@@ -125,23 +125,23 @@ const ServicesSection = () => {
   };
 
   return (
-    <section className="bg-neutral-50 py-32 px-6 lg:px-8 relative overflow-hidden">
+    <section className="bg-neutral-50 py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-neutral-900/5" />
       </div>
 
-      <div className="max-w-8xl mx-auto relative">
+      <div className="max-w-7xl mx-auto relative">
         {/* Header */}
         <Motion.div
-          className="text-center mb-24"
+          className="text-center mb-12 sm:mb-16 lg:mb-24"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-120px" }}
+          viewport={{ once: true, margin: "-50px" }}
         >
           <Motion.h2
-            className="text-6xl lg:text-8xl font-extralight text-neutral-900 mb-12"
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-8xl font-extralight text-neutral-900 mb-6 sm:mb-8 lg:mb-12 leading-tight"
             variants={textVariants}
           >
             We're here{" "}
@@ -155,112 +155,142 @@ const ServicesSection = () => {
               for you.
             </Motion.span>
           </Motion.h2>
-          <Motion.div variants={textVariants} className="space-y-3">
-            <p className="text-2xl lg:text-3xl text-neutral-600 font-extralight tracking-wide">
+          <Motion.div
+            variants={textVariants}
+            className="space-y-2 sm:space-y-3"
+          >
+            <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-neutral-600 font-extralight tracking-wide px-2">
               Discover below our additional services
             </p>
-            <p className="text-2xl lg:text-3xl text-neutral-600 font-extralight tracking-wide">
+            <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-neutral-600 font-extralight tracking-wide px-2">
               that will make your life easier.
             </p>
           </Motion.div>
         </Motion.div>
 
-        {/* Tabs */}
+        {/* Mobile-optimized Tabs */}
         <Motion.div
-          className="flex justify-center mb-20"
+          className="mb-12 sm:mb-16 lg:mb-20"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer}
         >
-          <div className="flex space-x-12 lg:space-x-16 relative">
+          {/* Mobile: Grid layout for better touch targets */}
+          <div className="grid grid-cols-2 gap-3 sm:hidden">
             {tabs.map((tab, index) => (
               <Motion.button
                 key={tab.id}
                 onClick={() => handleTabChange(tab.id)}
-                className={`relative pb-3 text-xl lg:text-2xl font-light transition-all duration-300 tracking-wide ${
+                className={`relative py-3 px-4 text-center text-sm font-medium transition-all duration-300 rounded-full ${
                   activeTab === tab.id
-                    ? "text-amber-500"
-                    : "text-neutral-400 hover:text-neutral-700"
+                    ? "bg-amber-500 text-white shadow-lg"
+                    : "bg-white text-neutral-600 border border-neutral-200 hover:border-amber-200"
                 }`}
                 variants={tabVariants}
                 custom={index}
-                whileHover={{ y: -3 }}
-                whileTap={{ y: 0 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
               >
                 {tab.label}
-                {activeTab === tab.id && (
-                  <Motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600"
-                    layoutId="activeTab"
-                    transition={{
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 25,
-                      duration: 0.5,
-                    }}
-                  />
-                )}
-
-                {/* Hover glow effect */}
-                <Motion.div
-                  className="absolute inset-0 bg-amber-500/5 rounded-lg -m-4"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileHover={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                />
               </Motion.button>
             ))}
           </div>
+
+          {/* Tablet and Desktop: Horizontal layout */}
+          <div className="hidden sm:flex justify-center">
+            <div className="flex flex-wrap justify-center gap-6 lg:gap-8 xl:gap-12 relative">
+              {tabs.map((tab, index) => (
+                <Motion.button
+                  key={tab.id}
+                  onClick={() => handleTabChange(tab.id)}
+                  className={`relative pb-2 lg:pb-3 text-lg lg:text-xl xl:text-2xl font-light transition-all duration-300 tracking-wide whitespace-nowrap ${
+                    activeTab === tab.id
+                      ? "text-amber-500"
+                      : "text-neutral-400 hover:text-neutral-700"
+                  }`}
+                  variants={tabVariants}
+                  custom={index}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ y: 0 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  {tab.label}
+                  {activeTab === tab.id && (
+                    <Motion.div
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600"
+                      layoutId="activeTab"
+                      transition={{
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 25,
+                        duration: 0.4,
+                      }}
+                    />
+                  )}
+
+                  {/* Hover glow effect - only on larger screens */}
+                  <Motion.div
+                    className="absolute inset-0 bg-amber-500/5 rounded-lg -m-3 hidden lg:block"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileHover={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                  />
+                </Motion.button>
+              ))}
+            </div>
+          </div>
         </Motion.div>
 
-        <div className="relative min-h-[700px] lg:min-h-[600px] max-w-7xl mx-auto">
+        {/* Content Area - Mobile-first responsive */}
+        <div className="relative min-h-[600px] sm:min-h-[700px] lg:min-h-[800px] mb-16 sm:mb-24 lg:mb-32">
           <AnimatePresence mode="wait">
             <Motion.div
               key={activeTab}
-              className="absolute inset-0 flex gap-16 lg:gap-20 items-center justify-between"
+              className="absolute inset-0 flex flex-col lg:flex-row gap-8 lg:gap-16 xl:gap-20 items-center justify-between"
               initial="hidden"
               animate="visible"
               exit="exit"
               variants={staggerContainer}
             >
+              {/* Image */}
               <Motion.div
-                className="order-2 lg:order-1 flex-1"
+                className="w-full lg:flex-1 order-1 lg:order-1"
                 variants={imageVariants}
               >
-                <div className="relative overflow-hidden rounded-md shadow-2xl shadow-neutral-900/20 max-w-xl">
-                  <div className="aspect-[4/5] w-full  h-[600px]">
+                <div className="relative overflow-hidden rounded-lg sm:rounded-xl shadow-xl sm:shadow-2xl shadow-neutral-900/20 max-w-sm sm:max-w-md lg:max-w-xl mx-auto lg:mx-0">
+                  <div className="aspect-[4/5] w-full h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px]">
                     <Motion.img
                       src={tabContent[activeTab].image}
                       alt={tabContent[activeTab].title}
                       className="w-full h-full object-cover"
-                      initial={{ scale: 1.15, opacity: 0 }}
+                      initial={{ scale: 1.1, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{
-                        duration: 2.2,
+                        duration: 1.5,
                         ease: "easeOut",
-                        opacity: { duration: 1.8, ease: "easeOut" },
+                        opacity: { duration: 1.2, ease: "easeOut" },
                       }}
                     />
                   </div>
 
                   {/* Premium overlay gradients */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-transparent" />
                   <div className="absolute inset-0 bg-gradient-to-bl from-amber-500/10 via-transparent to-transparent" />
 
                   {/* Subtle border glow */}
-                  <div className="absolute inset-0 rounded-2xl ring-1 ring-white/20" />
+                  <div className="absolute inset-0 rounded-lg sm:rounded-xl ring-1 ring-white/20" />
                 </div>
               </Motion.div>
 
               {/* Text Content */}
               <Motion.div
-                className="order-1 lg:order-2 lg:col-span-5 space-y-10"
+                className="w-full lg:flex-1 order-2 lg:order-2 space-y-6 sm:space-y-8 lg:space-y-10 text-center lg:text-left"
                 variants={staggerContainer}
               >
                 <Motion.div variants={textVariants}>
-                  <h3 className="text-5xl lg:text-6xl font-extralight text-neutral-900 mb-8 ">
+                  <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extralight text-neutral-900 mb-4 sm:mb-6 lg:mb-8 leading-tight px-2 lg:px-0">
                     {tabContent[activeTab].title
                       .split(" ")
                       .map((word, index) => {
@@ -277,9 +307,9 @@ const ServicesSection = () => {
                               initial={{ opacity: 0, rotateY: 90 }}
                               animate={{ opacity: 1, rotateY: 0 }}
                               transition={{
-                                duration: 1.2,
+                                duration: 0.8,
                                 ease: "easeOut",
-                                delay: 0.3 + index * 0.1,
+                                delay: 0.2 + index * 0.05,
                               }}
                             >
                               {word}
@@ -290,12 +320,12 @@ const ServicesSection = () => {
                           <Motion.span
                             key={index}
                             className="inline-block px-1"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{
-                              duration: 1,
+                              duration: 0.6,
                               ease: "easeOut",
-                              delay: 0.2 + index * 0.05,
+                              delay: 0.1 + index * 0.03,
                             }}
                           >
                             {word}{" "}
@@ -306,50 +336,44 @@ const ServicesSection = () => {
                 </Motion.div>
 
                 <Motion.p
-                  className="text-2xl lg:text-3xl text-neutral-600 font-extralight leading-relaxed tracking-wide"
+                  className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-neutral-600 font-extralight leading-relaxed tracking-wide px-2 lg:px-0"
                   variants={textVariants}
                 >
                   {tabContent[activeTab].subtitle}
                 </Motion.p>
 
                 <Motion.p
-                  className="text-xl text-neutral-500 leading-relaxed font-light"
+                  className="text-base sm:text-lg lg:text-xl text-neutral-500 leading-relaxed font-light px-2 lg:px-0"
                   variants={textVariants}
                 >
                   {tabContent[activeTab].description}
                 </Motion.p>
 
-                <Motion.div variants={textVariants} className="pt-4">
+                <Motion.div variants={textVariants} className="pt-2 sm:pt-4">
                   <Motion.button
-                    className="group relative inline-flex items-center px-12 py-5 bg-amber-500 text-white font-light text-xl rounded-full overflow-hidden shadow-xl shadow-amber-500/25"
-                    whileHover={{ scale: 1.02, y: -3 }}
+                    className="group relative inline-flex items-center justify-center px-8 sm:px-10 lg:px-12 py-3 sm:py-4 lg:py-5 bg-amber-500 text-white font-light text-lg sm:text-xl rounded-full overflow-hidden shadow-lg sm:shadow-xl shadow-amber-500/25 w-full sm:w-auto transition-all duration-300"
+                    whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
                   >
-                    {/* Button background glow */}
-                    <Motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-600"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: "0%" }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                    />
+                   
 
                     <span className="relative z-10 tracking-wide">
                       Learn More
                     </span>
 
-                    {/* Subtle shine effect */}
+                    {/* Subtle shine effect - reduced on mobile */}
                     <Motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 hidden sm:block"
                       initial={{ x: "-200%" }}
                       animate={{
                         x: "200%",
                       }}
                       transition={{
                         repeat: Infinity,
-                        duration: 3,
+                        duration: 4,
                         ease: "easeInOut",
-                        repeatDelay: 2,
+                        repeatDelay: 3,
                       }}
                     />
                   </Motion.button>
@@ -358,21 +382,23 @@ const ServicesSection = () => {
             </Motion.div>
           </AnimatePresence>
         </div>
-        <section className="relative py-32 text-center ">
+
+        {/* CTA Section - Mobile optimized */}
+        <section className="relative mt-40 py-16 sm:py-24 lg:py-32 text-center">
           <Motion.div
-            className="max-w-4xl mx-auto px-6 relative"
+            className="max-w-4xl mx-auto px-6 sm:px-8 relative"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-6xl font-light mb-8">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light mb-6 sm:mb-8 leading-tight text-black">
               Ready to Experience
-              <span className="block text-amber-500">Luxury?</span>
+              <span className="block text-amber-500 mt-2">Luxury?</span>
             </h2>
 
             <Motion.p
-              className="text-xl text-white/80 mb-12 leading-relaxed"
+              className="text-lg sm:text-xl text-black/80 mb-8 sm:mb-12 leading-relaxed px-2"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -383,26 +409,32 @@ const ServicesSection = () => {
             </Motion.p>
 
             <Motion.div
-              className="flex flex-col sm:flex-row gap-6 justify-center"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4 sm:px-0"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
               <Motion.button
-                className="px-8 py-4 bg-amber-500 text-black rounded-full font-medium hover:bg-amber-400 "
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-amber-500 text-white rounded-full font-medium hover:bg-amber-400 text-base sm:text-lg w-full sm:w-auto transition-all duration-300 justify-center inline-flex items-center"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
               >
-                <a href="/vehicles">Explore Vehicles</a>
+                <a href="/vehicles" className="w-full text-center">
+                  Explore Vehicles
+                </a>
               </Motion.button>
 
               <Motion.button
-                className="px-8 py-4 rounded-full text-black border border-black"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+                className="px-6 sm:px-8 py-3 sm:py-4 rounded-full text-black border border-black/30 hover:border-amber-500 hover:text-amber-500 text-base sm:text-lg w-full sm:w-auto transition-all duration-300 justify-center inline-flex items-center"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
               >
-                <a href="/contact"> Contact Us</a>
+                <a href="/contact" className="w-full text-center">
+                  Contact Us
+                </a>
               </Motion.button>
             </Motion.div>
           </Motion.div>

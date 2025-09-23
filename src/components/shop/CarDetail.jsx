@@ -409,7 +409,7 @@ const CarDetail = () => {
                 className="flex items-center justify-center gap-3 px-8 py-4 bg-amber-500 text-black rounded-full font-medium text-lg hover:bg-amber-400 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => window.open("tel:+1234567890", "_self")}
+                onClick={() => window.open("tel:+2349066335108", "_self")}
               >
                 <IoCallOutline size={20} />
                 Call Us
@@ -419,7 +419,9 @@ const CarDetail = () => {
                 className="flex items-center justify-center gap-3 px-8 py-4 border border-white/20 text-white rounded-full font-medium text-lg hover:bg-white hover:text-black transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => window.open("mailto:info@example.com", "_self")}
+                onClick={() =>
+                  window.open("mailto:gibsontheophilus4@gmail.com", "_self")
+                }
               >
                 <IoMailOutline size={20} />
                 Email Inquiry

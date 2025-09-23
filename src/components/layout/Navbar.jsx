@@ -305,22 +305,22 @@ const Navbar = () => {
                 >
                   <div className="text-sm text-gray-500 font-light">
                     <div className="mb-2">
-                      7416 Ireland Ct, El Paso, TX 79930
+                      13b Eastern Bypass, Port Harcourt, Rivers State
                     </div>
                     <div className="mb-2">
                       <a
-                        href="tel:(417)932-6616"
+                        href="tel:+2349066335108"
                         className="hover:text-gray-700 transition-colors"
                       >
-                        (417) 932-6616
+                        +234 906 633 5108
                       </a>
                     </div>
                     <div>
                       <a
-                        href="mailto:info@reliable.com"
+                        href="mailto:gibsontheophilus4@gmail.com"
                         className="hover:text-gray-700 transition-colors"
                       >
-                        info@reliable.com
+                        gibsontheophilus4@gmail.com
                       </a>
                     </div>
                   </div>
